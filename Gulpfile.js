@@ -20,6 +20,7 @@ gulp.task('default', ['server', 'js:watch']);
 function runServer() {
     return nodemon({
         script: './bin/www',
+        ignore: [ './public/**', './client/**' ],
         env: {DEBUG: 'vagrant:*'}
     });
 }

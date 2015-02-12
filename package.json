@@ -12,13 +12,15 @@
     "express": "~4.11.1",
     "flummox": "^2.5.1",
     "hjs": "~0.0.6",
+    "immutable": "^3.6.2",
     "less-middleware": "1.0.x",
     "lodash": "^3.1.0",
     "morgan": "~1.5.1",
     "object-assign": "^2.0.0",
     "react": "^0.12.2",
     "roadrunner": "^1.0.4",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "superagent": "^0.21.0"
   },
   "devDependencies": {
     "6to5ify": "^4.1.1",
