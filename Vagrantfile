@@ -2,6 +2,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = "address-book"
+  config.ssh.private_key_path = "~/.ssh/id_rsa"
+  config.ssh.forward_agent = true
 
   config.vm.network "forwarded_port", guest: 3000, host: 8000
   config.vm.network "private_network", ip: "192.168.33.7"
@@ -47,7 +49,6 @@ Vagrant.configure(2) do |config|
       cd .zsh
       make install
       cd
-      source ./.zshrc
     else
       echo "ZSH set up"
     fi
