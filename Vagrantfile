@@ -3,7 +3,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = "address-book"
 
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
+  config.vm.network "forwarded_port", guest: 3000, host: 8000
   config.vm.network "private_network", ip: "192.168.33.7"
 
   config.vm.provider "virtualbox" do |vb|
@@ -46,8 +46,19 @@ Vagrant.configure(2) do |config|
       ln -s .zsh/zshrc .zshrc
       cd .zsh
       make install
+      cd
+      source ./.zshrc
     else
       echo "ZSH set up"
+    fi
+
+    if [ ! -d "dotfiles" ]; then
+      git clone http://github.com/mbriggs/dotfiles
+    fi
+
+    if [ ! -d "scripts" ]; then
+      git clone http://github.com/mbriggs/scripts
+      ./scripts/link-dotfiles
     fi
   SHELL
 end
