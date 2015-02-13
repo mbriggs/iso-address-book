@@ -1,5 +1,13 @@
 import { Actions } from 'flummox';
-import request from 'superagent';
+
+const key = "contacts";
 
 export class ContactActions extends Actions {
+    load(){
+        return localStorage[key];
+    }
+
+    save(contacts){
+        localStorage[key] = contacts;
+    }
 }

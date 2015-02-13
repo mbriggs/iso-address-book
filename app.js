@@ -18,27 +18,30 @@ app.set('views', dir('views'));
 app.set('view engine', 'hjs');
 
 // middleware
-//app.use(dir('/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(less(dir('public')));
-app.use(express.static(dir('public')));
+[
+    //favicon(dir('/public/favicon.ico')),
+    logger('dev'),
+    bodyParser.json(),
+    bodyParser.urlencoded({ extended: false }),
+    cookieParser(),
+    less(dir('public')),
+    express.static(dir('public'))
+
+].forEach(function(m){ app.use(m) });
 
 app.use('/', routes);
 app.use('/users', users);
 
 
 // error handlers
-app.use(function(req, res, next) {
+app.use(function (req, res, next){
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
+    app.use(function (err, req, res, next){
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -47,7 +50,7 @@ if (app.get('env') === 'development') {
     });
 }
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next){
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
